@@ -1,10 +1,25 @@
 package com.galvanize;
+import java.util.Scanner;
 
 class Program {
     static boolean isActive(String status){
-        if (status.equals("active")) {
-            return true;
-        } else {return false;}
+
+        return status.equals("active");
+    }
+
+    static void printPositiveFrom45(int number){
+        // Print numbers from 45 -> 50 to the console
+        while (number <= 50) {
+            System.out.println(number);
+            number++;
+        }
+    }
+
+    static void printEvenFrom2_6(){
+
+        for (int i = 2; i <= 6; i += 2) {
+            System.out.println(i);
+        }
     }
 
     static String grade(int input) {
@@ -25,29 +40,47 @@ class Program {
 
     public static void main (String[] args) {
 
-        String status = "active";
-        int grade = 66;
-        int n = 45;
+        Scanner scanning = new Scanner(System.in);
 
-        System.out.println(isActive(status));
-        System.out.println(grade(grade));
+        Motorcycle blueMotorcycle = new Motorcycle(1993,4,750,"Blue", "Honda", "Nighthawk");
+        blueMotorcycle.printBikeInfo();
 
 
-        // Print numbers from 45 -> 50 to the console
-        while (n <= 50) {
-            System.out.println(n);
-            n++;
+        boolean programState = true;
+
+        while(programState){
+
+            System.out.println("What do you want tot do with your bike: ");
+            String action = scanning.nextLine();
+
+
+            switch (action) {
+                case "ignition on": {
+                    blueMotorcycle.setIgnitionState("On");
+                    System.out.println("\ncode to turn on ignition\n");
+                    blueMotorcycle.printBikeInfo();
+                    break;
+                }
+                case "fuel on": {
+                    blueMotorcycle.setFuelSelectorState("On");
+                    blueMotorcycle.printBikeInfo();
+                }
+                case "start engine": {
+                    blueMotorcycle.startBike();
+                    System.out.println("\nThe bike is running\n");
+                    blueMotorcycle.printBikeInfo();
+                    break;
+                }
+
+                case "show bike": {
+                    blueMotorcycle.printBikeInfo();
+                    break;
+                }
+
+                case "exit": {
+                    programState = false;
+                }
+            }
         }
-
-        // Print even numbers from 2 -> 6 to the console
-        for (int i = 2; i <= 6; i += 2) {
-            System.out.println(i);
-        }
-
-
-
-
     }
-
-
 }
