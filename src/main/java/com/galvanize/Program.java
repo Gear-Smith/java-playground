@@ -40,15 +40,30 @@ class Program {
 
     public static void main (String[] args) {
 
+        String[] names = new String[]{"John", "", "James", "Joe"};
+        AccumulatorPatterns accumulator = new AccumulatorPatterns();
+        System.out.println(accumulator.toSentence(names));
+
+
+
+
+
         Scanner scanning = new Scanner(System.in);
 
         Motorcycle blueMotorcycle = new Motorcycle(1993,4,750,"Blue", "Honda", "Nighthawk");
-        blueMotorcycle.printBikeInfo();
 
+
+        AccumulatorPatterns test = new AccumulatorPatterns();
+        test.arraySum(new int[]{22,22,22,22});
 
         boolean programState = true;
 
         while(programState){
+
+            System.out.println("\033[H\033[J");
+            System.out.flush();
+            blueMotorcycle.printBikeInfo();
+
 
             System.out.println("What do you want tot do with your bike: ");
             String action = scanning.nextLine();
@@ -56,23 +71,26 @@ class Program {
 
             switch (action) {
                 case "ignition on": {
+
                     blueMotorcycle.setIgnitionState("On");
-                    System.out.println("\ncode to turn on ignition\n");
-                    blueMotorcycle.printBikeInfo();
+
                     break;
                 }
                 case "fuel on": {
+
                     blueMotorcycle.setFuelSelectorState("On");
-                    blueMotorcycle.printBikeInfo();
+                    break;
                 }
                 case "start engine": {
+                    System.out.flush();
+
                     blueMotorcycle.startBike();
                     System.out.println("\nThe bike is running\n");
-                    blueMotorcycle.printBikeInfo();
                     break;
                 }
 
                 case "show bike": {
+
                     blueMotorcycle.printBikeInfo();
                     break;
                 }
